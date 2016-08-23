@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		//First method : Object literal
+			var singleton_1 = {
+				property1 : 'Test1',
+				property2 : 'Test2',
+				method1 : function() {
+					console.dir('Hello World');
+				}
+			};
+
+		//Second way :
+		
+		var singleton_2 = function() {
+			var privateVariable = 'I am Private';
+			function showPrivate () {
+				console.dir(privateVariable);
+			};
+
+			return {
+				publicMethod : function() {
+					showPrivate();
+				},
+				publicVariable : 'I am public Variable'
+			}
+		};
+
+		//Calling singleton_2
+		/*var mySingleton = singleton_2 ();
+		mySingleton.publicMethod();
+		console.dir(mySingleton.publicVariable);	*/
+
+
+
+		// Third Way :
+
+		var singleton_3 = (function(){
+			var instantiated ;
+
+			function init() {
+				return  {
+					publicMethod : function () {
+						console.dir('Hello World');
+					}	
+				}
+			};
+
+			return {
+				getInstance : function () {
+					if(!instantiated) {
+						instantiated = init();
+					}
+
+					return instantiated;
+				}
+			};
+		})();
+
+		//Calling singleton_3
+		//singleton_3.getInstance().publicMethod();
+
+	</script>
+</body>
+</html>
